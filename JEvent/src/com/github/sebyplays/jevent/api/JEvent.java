@@ -12,13 +12,14 @@ public class JEvent {
         this.setEvent(event);
     }
 
-    public void callEvent(){
+    public JEvent callEvent(){
         for(RegisteredListener registeredListener : HandlerList.handlers){
             if(registeredListener.getEvent().getClass() == this.getEvent().getClass()){
                 registeredListener.setEvent(this.getEvent());
                 registeredListener.callEvent();
             }
         }
+        return this;
     }
 
     public void registerListener(Listener listener){
@@ -28,5 +29,4 @@ public class JEvent {
     public void unregisterListener(Listener listener){
         HandlerList.handlers.remove(new RegisteredListener(listener, this.getEvent()));
     }
-
 }

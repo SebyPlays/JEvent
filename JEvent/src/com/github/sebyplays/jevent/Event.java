@@ -3,9 +3,13 @@ package com.github.sebyplays.jevent;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Event {
+public class Event implements Cancellable {
 
+    @Getter private boolean cancelled;
+    @Getter private String eventName = getClass().getSimpleName();
 
-    @Getter @Setter public String eventName = "";
-
+    @Override
+    public void setCancelled(boolean isCancelled) {
+        this.cancelled = isCancelled;
+    }
 }
